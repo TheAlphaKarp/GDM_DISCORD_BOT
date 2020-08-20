@@ -1,4 +1,4 @@
-package me.thealphakarp.gdm.command.commands;
+package me.thealphakarp.gdm.command.commands.admin;
 
 import me.thealphakarp.gdm.command.CommandContext;
 import me.thealphakarp.gdm.command.ICommand;

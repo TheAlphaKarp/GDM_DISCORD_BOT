@@ -1,9 +1,11 @@
 package me.thealphakarp.gdm;
 
-import com.jagrosh.jdautilities.examples.command.PingCommand;
 import me.thealphakarp.gdm.command.CommandContext;
 import me.thealphakarp.gdm.command.ICommand;
 import me.thealphakarp.gdm.command.commands.*;
+import me.thealphakarp.gdm.command.commands.admin.Kick;
+import me.thealphakarp.gdm.command.commands.gdm.Register;
+import me.thealphakarp.gdm.command.commands.music.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import javax.annotation.Nullable;
@@ -21,6 +23,12 @@ public class CommandManager {
         addCommand(new Kick());
         addCommand(new Meme());
         addCommand(new Joke());
+        addCommand(new Join());
+        addCommand(new Play());
+        addCommand(new Skip());
+        addCommand(new Now());
+        addCommand(new Queue());
+        addCommand(new Register());
     }
 
     private void addCommand(ICommand cmd) {
