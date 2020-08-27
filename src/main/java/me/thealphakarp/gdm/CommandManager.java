@@ -4,6 +4,7 @@ import me.thealphakarp.gdm.command.CommandContext;
 import me.thealphakarp.gdm.command.ICommand;
 import me.thealphakarp.gdm.command.commands.*;
 import me.thealphakarp.gdm.command.commands.admin.Kick;
+import me.thealphakarp.gdm.command.commands.admin.Order;
 import me.thealphakarp.gdm.command.commands.gdm.Register;
 import me.thealphakarp.gdm.command.commands.music.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -29,6 +30,7 @@ public class CommandManager {
         addCommand(new Now());
         addCommand(new Queue());
         addCommand(new Register());
+        addCommand(new Order());
     }
 
     private void addCommand(ICommand cmd) {
