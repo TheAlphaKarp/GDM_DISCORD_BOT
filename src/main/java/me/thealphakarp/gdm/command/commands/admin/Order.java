@@ -25,30 +25,27 @@ public class Order implements ICommand {
             return;
         }
 
-        System.out.println(ctx.getGuild().getMemberCount());
-
         final List<Member> members = ctx.getGuild().getMembers();
-        final List<Role> generalRole = ctx.getGuild().getRolesByName("algemeen", true);
+        // System.out.println(members.size());
 
-        System.out.println(members.size());
+        final List<Role> generalRole = ctx.getGuild().getRolesByName("Algemeen", true);
 
         for (var m: members) {
-            System.out.println(m.getUser().getName() + "'s roles");
-            for (var r: m.getRoles()) {
-                System.out.println(r.getName());
+            /*if (m.getUser().isBot()) {
+                System.out.println("user is bot");
+                continue;
             }
-            System.out.println("</roles>");
+            ;
 
-            System.out.println("ROLES TO DELETE");
-            final List<Role> collect = m.getRoles().stream().filter(item -> !item.getName().toLowerCase().equals("dsqd"))
+            System.out.println("user found");
+            final List<Role> collect = m.getRoles().stream().filter(item -> !item.getName().toLowerCase().equals("admin"))
                     .collect(Collectors.toList());
 
-            for (var r: collect) {
-                System.out.println(r.getName());
-            }
-            System.out.println("END ROLES TO DELETE");
-
             ctx.getGuild().modifyMemberRoles(m, generalRole, collect).queue();
+            System.out.println("user roles deleted");*/
+            if (!m.getRoles().contains(ctx.getGuild().getRoleById("509647160690868224"))) {
+                ctx.getGuild().modifyMemberRoles(m, generalRole, null).queue();
+            }
         }
 
     }

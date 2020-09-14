@@ -19,7 +19,8 @@ public class Register implements ICommand {
 
         if (ctx.getArgs().size() < 3) {
             channel.sendMessage("You didn't give enough arguments. Please use the following template:" +
-                    ">register voornaam naam richting \n example: >register Arne Six @MMP-1st-bachelor").queue();
+                    ">register voornaam naam richting \n example: >register Arne Six @MMP-1st-bachelor\n" +
+                    "If you have more than 1 name, please shorten it to only a firstname and lastname.").queue();
             return;
         }
 
@@ -27,7 +28,7 @@ public class Register implements ICommand {
         final String lastName = ctx.getArgs().get(1);
         final String requestedRole = parseRole(ctx.getArgs().get(2));
 
-        if (!channel.getId().equals("685416873315401760")) {
+        if (!channel.getId().equals("754037386576527470")) {
             channel.sendMessage("Sorry but this is the wrong channel. Please go to #registreren instead.").queue();
             return;
         }
@@ -39,9 +40,11 @@ public class Register implements ICommand {
 
         final List<Role> memberRoles = member.getRoles();
         final Role role = ctx.getGuild().getRoleById(requestedRole);
+        final List<Role> general = ctx.getGuild().getRolesByName("algemeen", true);
 
         if (role == null) {
-            channel.sendMessage("The role doesn't exist. You probably entered mentioned a user.").queue();
+            channel.sendMessage("The role doesn't exist. You probably mentioned a user.").queue();
+            ctx.getGuild().addRoleToMember(member.getId(), general.get(0)).complete();
             return;
         }
 
@@ -61,7 +64,7 @@ public class Register implements ICommand {
 
 
         final List<Role> registered = ctx.getGuild().getRolesByName("registered", true);
-        final List<Role> general = ctx.getGuild().getRolesByName("algemeen", true);
+
         System.out.println(registered.get(0).getName());
         ctx.getGuild().addRoleToMember(member.getId(), registered.get(0)).complete();
         ctx.getGuild().addRoleToMember(member.getId(), general.get(0)).complete();
